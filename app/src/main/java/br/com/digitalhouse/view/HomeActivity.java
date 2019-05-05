@@ -18,9 +18,10 @@ import br.com.digitalhouse.R;
 import br.com.digitalhouse.adapter.RecyclerViewAdapter;
 import br.com.digitalhouse.data.AgendaBancoDados;
 import br.com.digitalhouse.data.AgendaDAO;
+import br.com.digitalhouse.interfaces.OnClickRecyclerView;
 import br.com.digitalhouse.model.Agenda;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements OnClickRecyclerView {
     private TextInputLayout contato;
     private TextInputLayout telefone;
     private FloatingActionButton btnAdd;
@@ -62,7 +63,7 @@ public class HomeActivity extends AppCompatActivity {
         AgendaBancoDados bancoDados = AgendaBancoDados.getDatabase(this);
         dao = bancoDados.agendaDAO();
 
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(listaAgenda);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(listaAgenda, this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(layoutManager);
@@ -84,7 +85,7 @@ public class HomeActivity extends AppCompatActivity {
                     agenda.setNomeContato(nomeContato);
                     agenda.setTelefone(telefoneContato);
                     dao.atualizarAgenda(agenda);
-                    System.out.println("Atualizado");
+
                 } else {
 
                     agenda = new Agenda();
@@ -95,6 +96,9 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         }).start();
+
+        contato.getEditText().setText("");
+        telefone.getEditText().setText("");
     }
 
     private void removerContato() {
@@ -114,6 +118,9 @@ public class HomeActivity extends AppCompatActivity {
             }
         }).start();
 
+        contato.getEditText().setText("");
+        telefone.getEditText().setText("");
+
     }
 
     private void retornaTodosOsDadosDoBanco(final RecyclerViewAdapter adapter) {
@@ -128,5 +135,11 @@ public class HomeActivity extends AppCompatActivity {
                 });
             }
         }).start();
+    }
+
+    @Override
+    public void onClick(Agenda agenda) {
+        contato.getEditText().setText(agenda.getNomeContato());
+        telefone.getEditText().setText(agenda.getTelefone());
     }
 }

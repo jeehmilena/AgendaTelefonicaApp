@@ -10,13 +10,16 @@ import android.widget.TextView;
 import java.util.List;
 
 import br.com.digitalhouse.R;
+import br.com.digitalhouse.interfaces.OnClickRecyclerView;
 import br.com.digitalhouse.model.Agenda;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     private List<Agenda> agendaList;
+    private OnClickRecyclerView listener;
 
-    public RecyclerViewAdapter(List<Agenda> agendaList) {
+    public RecyclerViewAdapter(List<Agenda> agendaList, OnClickRecyclerView listener) {
         this.agendaList = agendaList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -28,8 +31,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Agenda agenda =agendaList.get(i);
+        final Agenda agenda =agendaList.get(i);
         viewHolder.bind(agenda);
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onClick(agenda);
+            }
+        });
     }
 
     @Override
