@@ -37,19 +37,22 @@ public class HomeActivity extends AppCompatActivity implements OnClickRecyclerVi
 
         initViews(listaAgenda);
 
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addContato();
-            }
-        });
+        //VAMOS COLOCAR AS AÇÕES DOS BOTÕES
 
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                removerContato();
-            }
-        });
+
+//        btnAdd.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                addContato();
+//            }
+//        });
+
+//        btnDelete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                removerContato();
+//            }
+//        });
 
     }
 

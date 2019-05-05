@@ -16,14 +16,15 @@ public class IntroducaoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_introducao);
 
+        //VAMOS COLOCAR A AÇÃO DO BOTÃO
 
-        btnComecar = findViewById(R.id.btnComecar);
+        //btnComecar = findViewById(R.id.btnComecar);
 
-        btnComecar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(IntroducaoActivity.this, HomeActivity.class));
-            }
-        });
+//        btnComecar.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(IntroducaoActivity.this, HomeActivity.class));
+//            }
+//        });
     }
 }
